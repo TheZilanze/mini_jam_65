@@ -2,7 +2,12 @@ extends KinematicBody2D
 
 export(float) var speed : float = 128
 
-var velocity : Vector2 = Vector2(speed, speed)
+var velocity : Vector2 = Vector2(0, 0)
+var aim : Vector2 = Vector2(0, 0) setget set_aim
+
+
+func set_aim(value):
+	aim = value.normalized()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +33,7 @@ func _draw():
 
 func _physics_process(delta):
 	# Update look direction
-	look_at(global_position + velocity)
+	look_at(global_position + aim)
 	
 	# Clamp velocity
 	velocity = velocity.clamped(speed)
