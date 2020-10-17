@@ -2,8 +2,12 @@ extends KinematicBody2D
 
 export(float) var speed : float = 128
 
-var velocity : Vector2 = Vector2(0, 0)
+var velocity : Vector2 = Vector2(0, 0) setget set_velocity
 var aim : Vector2 = Vector2(0, 0) setget set_aim
+
+
+func set_velocity(value):
+	velocity = value.clamped(speed)
 
 
 func set_aim(value):
