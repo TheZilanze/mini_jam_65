@@ -6,6 +6,9 @@ var patrol_index = 1
 var path : PoolVector2Array = []
 
 
+
+
+
 func _ready():
 	# Find all patrol points
 	for child in get_children():
@@ -44,6 +47,17 @@ func _physics_process(delta):
 			path = find_path()
 			if patrol_points[(patrol_index - 1) % patrol_points.size()].stop:
 				emit_signal("finished", "patrol_idle", {idle_duration = 1.0})
+	
+	
+	# Check if state should be changed
+	if owner.target_in_range() and owner.target_in_line_of_sight():
+		owner.investigate_level += delta
+		if owner.investigate_level >= owner.investigate_level_threshold:
+			emit_signal("finished", "investigate", {})
+	else:
+		owner.investigate_level -= delta
+		owner.investigate_level = clamp(owner.investigate_level, 0, owner.investigate_level_threshold)
+	#print("investigate_level: " + str(owner.investigate_level))
 
 
 func find_path():

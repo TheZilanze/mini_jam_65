@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/actors/actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/actors/enemy.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/actors/states/enemy/enemy_patrol_state.gd" type="Script" id=4]
 [ext_resource path="res://scripts/actors/states/enemy/enemy_patrol_idle_state.gd" type="Script" id=5]
 [ext_resource path="res://scripts/patrol/patrol_point.gd" type="Script" id=6]
+[ext_resource path="res://scripts/actors/states/enemy/enemy_investigate_state.gd" type="Script" id=7]
 
 [node name="enemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -38,3 +39,6 @@ stop_duration = 0.5
 
 [node name="patrol_idle" type="Node" parent="state_machine" index="1"]
 script = ExtResource( 5 )
+
+[node name="investigate" type="Node" parent="state_machine" index="2"]
+script = ExtResource( 7 )
