@@ -1,7 +1,5 @@
 extends State
-class_name EnemyInvestigateState
-
-#...
+class_name EnemyAttackState
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,9 +22,9 @@ func _physics_process(delta):
 	if owner.target_in_line_of_sight():
 		owner.velocity += owner.seek(owner.target.global_position)
 		owner.target_last_known_position = owner.target.global_position
-		owner.investigate_level += delta
-		if owner.investigate_level >= owner.attack_level_threshold:
-			emit_signal("finished", "attack", {})
+		owner.investigate_level = owner.investigate_level_threshold
+		# TODO: Fire at target...
+		print("Fire at target...")
 	# TODO: This should be another state where the player looks around.
 	# 		If the investigate level goes below zero it starts patrolling again.
 	# 		If the investigate level goes above the investigate threshold then start investigating again
@@ -41,7 +39,6 @@ func _physics_process(delta):
 		# If we have reached the last known position of the target (and the target isn't in line of sight) then we go back to patrolling
 		if owner.global_position.distance_to(owner.target_last_known_position) < owner.speed * delta:
 			# TODO: Change to state for looking around before going back to patrolling...
-			#emit_signal("finished", "patrol", {})
 			owner.target_last_known_position = null
 	
 	# Update aim

@@ -3,11 +3,13 @@ extends "res://scripts/actors/actor.gd"
 export(float) var visibility_range : float = 256
 export(float, 0, 360) var fov : float = 140
 export(float) var investigate_level_threshold : float = 0.5
+export(float) var attack_level_threshold : float = 1.0
 
 var target
 var nav_mesh : Navigation2D = null
 
 var investigate_level : float = 0
+var target_last_known_position = null
 
 var line_of_sight_offsets : PoolVector2Array = [
 	Vector2(0, 0),
@@ -36,13 +38,17 @@ func _draw():
 		for offset in line_of_sight_offsets:
 			draw_line(Vector2.ZERO, to_local(target.global_position + offset), Color.blue, 2.0)
 	
+	# Targets last known position
+	if target_last_known_position:
+		draw_circle(to_local(target_last_known_position), 32, Color(0, 0, 1, 0.5))
+	
 	pass
 
 
 func _physics_process(delta):
 	
 	
-	
+	#print("investigate_level: " + str(investigate_level))
 	
 	pass
 

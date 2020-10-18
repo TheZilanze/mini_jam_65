@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "State",
+"class": "EnemyAttackState",
+"language": "GDScript",
+"path": "res://scripts/actors/states/enemy/enemy_attack_state.gd"
+}, {
+"base": "State",
 "class": "EnemyInvestigateState",
 "language": "GDScript",
 "path": "res://scripts/actors/states/enemy/enemy_investigate_state.gd"
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://scripts/state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"EnemyAttackState": "",
 "EnemyInvestigateState": "",
 "EnemyPatrolIdleState": "",
 "EnemyPatrolState": "",
