@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gui/themes/default_themes.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/gui/intro.gd" type="Script" id=2]
+
+[node name="intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin_container" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+custom_constants/separation = 20
+
+[node name="margin_container" type="MarginContainer" parent="margin_container/v_box_container"]
+margin_right = 1880.0
+margin_bottom = 925.0
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lbl_intro" type="Label" parent="margin_container/v_box_container/margin_container"]
+margin_left = 20.0
+margin_top = 438.0
+margin_right = 1860.0
+margin_bottom = 487.0
+text = "You were abandoned by your friends while exploring the old factory outside of town."
+align = 1
+valign = 1
+
+[node name="margin_container-2" type="MarginContainer" parent="margin_container/v_box_container"]
+margin_top = 945.0
+margin_right = 1880.0
+margin_bottom = 1040.0
+size_flags_vertical = 9
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="btn_continue" type="Button" parent="margin_container/v_box_container/margin_container-2"]
+margin_left = 858.0
+margin_top = 20.0
+margin_right = 1022.0
+margin_bottom = 75.0
+focus_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+custom_colors/font_color_hover = Color( 0.588235, 0.588235, 0.588235, 1 )
+enabled_focus_mode = 0
+text = "Continue"
+flat = true
+[connection signal="pressed" from="margin_container/v_box_container/margin_container-2/btn_continue" to="." method="_on_btn_continue_pressed"]

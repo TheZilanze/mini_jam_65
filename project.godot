@@ -107,4 +107,5 @@ name_casing=2
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 environment/default_environment="res://default_env.tres"
