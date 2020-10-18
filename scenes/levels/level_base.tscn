@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/level/walls.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gui/fonts/font_title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://gui/themes/default_themes.tres" type="Theme" id=3]
+[ext_resource path="res://scripts/gui/pause.gd" type="Script" id=4]
+[ext_resource path="res://scripts/gui/game_over.gd" type="Script" id=5]
+[ext_resource path="res://scenes/level/level_complete_area.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/actors/player.tscn" type="PackedScene" id=7]
+
+[node name="level_base" type="Node"]
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="walls" parent="world" instance=ExtResource( 1 )]
+
+[node name="level_complete_area" parent="world" instance=ExtResource( 6 )]
+
+[node name="player" parent="world" instance=ExtResource( 7 )]
+
+[node name="gui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="pause" type="Control" parent="gui"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="gui/pause"]
+self_modulate = Color( 0, 0, 0, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin_container" type="MarginContainer" parent="gui/pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="center_container" type="CenterContainer" parent="gui/pause/margin_container"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+
+[node name="v_box_container" type="VBoxContainer" parent="gui/pause/margin_container/center_container"]
+margin_left = 853.0
+margin_top = 446.0
+margin_right = 1027.0
+margin_bottom = 594.0
+custom_constants/separation = 20
+
+[node name="lbl_title" type="Label" parent="gui/pause/margin_container/center_container/v_box_container"]
+margin_right = 174.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 2 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="btn_resume" type="Button" parent="gui/pause/margin_container/center_container/v_box_container"]
+margin_top = 93.0
+margin_right = 174.0
+margin_bottom = 148.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Resume"
+flat = true
+
+[node name="game_over" type="Control" parent="gui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="gui/game_over"]
+self_modulate = Color( 0, 0, 0, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin_container" type="MarginContainer" parent="gui/game_over"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="center_container" type="CenterContainer" parent="gui/game_over/margin_container"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+
+[node name="v_box_container" type="VBoxContainer" parent="gui/game_over/margin_container/center_container"]
+margin_left = 809.0
+margin_top = 408.0
+margin_right = 1070.0
+margin_bottom = 631.0
+custom_constants/separation = 20
+
+[node name="lbl_title" type="Label" parent="gui/game_over/margin_container/center_container/v_box_container"]
+margin_right = 261.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 2 )
+text = "Game over"
+align = 1
+valign = 1
+
+[node name="btn_try_again" type="Button" parent="gui/game_over/margin_container/center_container/v_box_container"]
+margin_top = 93.0
+margin_right = 261.0
+margin_bottom = 148.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Try again"
+flat = true
+
+[node name="btn_back_to_menu" type="Button" parent="gui/game_over/margin_container/center_container/v_box_container"]
+margin_top = 168.0
+margin_right = 261.0
+margin_bottom = 223.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Back to menu"
+flat = true
+[connection signal="pressed" from="gui/pause/margin_container/center_container/v_box_container/btn_resume" to="gui/pause" method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="gui/game_over/margin_container/center_container/v_box_container/btn_try_again" to="gui/game_over" method="_on_btn_try_again_pressed"]
+[connection signal="pressed" from="gui/game_over/margin_container/center_container/v_box_container/btn_back_to_menu" to="gui/game_over" method="_on_btn_back_to_menu_pressed"]

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal died
+
 export(float) var speed : float = 128
 
 var velocity : Vector2 = Vector2(0, 0) setget set_velocity

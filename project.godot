@@ -57,8 +57,12 @@ _global_script_class_icons={
 [application]
 
 config/name="mini_jam_65"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/gui/main_menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LEVEL_MANAGER="*res://scripts/autoloads/level_manager.gd"
 
 [display]
 
