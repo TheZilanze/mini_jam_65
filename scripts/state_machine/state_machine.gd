@@ -15,8 +15,8 @@ func initialize():
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
-			child.set_process(false)
-			child.set_physics_process(false)
+			#child.set_process(false)
+			#child.set_physics_process(false)
 			child.connect("finished", self, "change_state")
 			if not current_state:
 				change_state(child.name, [])
