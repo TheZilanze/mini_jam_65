@@ -18,3 +18,7 @@ func _ready():
 func next_level():
 	index += 1
 	get_tree().change_scene(levels[index])
+
+
+func reset():
+	index = -1

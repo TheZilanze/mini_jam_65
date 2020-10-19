@@ -26,12 +26,12 @@ __meta__ = {
 [node name="v_box_container" type="VBoxContainer" parent="margin_container"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1900.0
+margin_right = 6539.0
 margin_bottom = 1060.0
 custom_constants/separation = 20
 
 [node name="margin_container" type="MarginContainer" parent="margin_container/v_box_container"]
-margin_right = 1880.0
+margin_right = 6519.0
 margin_bottom = 925.0
 size_flags_vertical = 3
 custom_constants/margin_right = 20
@@ -44,16 +44,17 @@ __meta__ = {
 
 [node name="lbl_intro" type="Label" parent="margin_container/v_box_container/margin_container"]
 margin_left = 20.0
-margin_top = 438.0
-margin_right = 1860.0
-margin_bottom = 487.0
-text = "You were abandoned by your friends while exploring the old factory outside of town."
+margin_top = 412.0
+margin_right = 6499.0
+margin_bottom = 513.0
+text = "One night you and your friends decided to explore the old factory outside of town. While there you were surprised when a criminal gang showed up to the factory. After falling and passing out you wake up to realise that you are alone and that your friends have abandoned you. You now need to find a way to sneak past the criminals and escape the factory."
 align = 1
 valign = 1
+autowrap = true
 
 [node name="margin_container-2" type="MarginContainer" parent="margin_container/v_box_container"]
 margin_top = 945.0
-margin_right = 1880.0
+margin_right = 6519.0
 margin_bottom = 1040.0
 size_flags_vertical = 9
 custom_constants/margin_right = 20
@@ -62,15 +63,15 @@ custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
 [node name="btn_continue" type="Button" parent="margin_container/v_box_container/margin_container-2"]
-margin_left = 858.0
+margin_left = 3158.0
 margin_top = 20.0
-margin_right = 1022.0
+margin_right = 3360.0
 margin_bottom = 75.0
 focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 custom_colors/font_color_hover = Color( 0.588235, 0.588235, 0.588235, 1 )
 enabled_focus_mode = 0
-text = "Continue"
+text = "[Continue]"
 flat = true
 [connection signal="pressed" from="margin_container/v_box_container/margin_container-2/btn_continue" to="." method="_on_btn_continue_pressed"]

@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="nav_mesh" type="Navigation2D" groups=[
+"nav_mesh",
+]]

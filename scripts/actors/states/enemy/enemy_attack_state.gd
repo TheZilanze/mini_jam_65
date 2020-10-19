@@ -9,10 +9,14 @@ func _ready():
 
 func enter(params):
 	owner.target_last_known_position = owner.target.global_position
+	
+	owner.attack_icon.show()
 
 
 func exit():
 	owner.target_last_known_position = null
+	
+	owner.attack_icon.hide()
 
 
 func _physics_process(delta):
@@ -24,7 +28,10 @@ func _physics_process(delta):
 		owner.target_last_known_position = owner.target.global_position
 		owner.investigate_level = owner.investigate_level_threshold
 		# TODO: Fire at target...
-		print("Fire at target...")
+		# TEMP.?
+		if owner.global_position.distance_squared_to(owner.target.global_position) < pow(owner.visibility_range * 0.3, 2):
+			owner.target.kill()
+			emit_signal("finished", "patrol", {})
 	# TODO: This should be another state where the player looks around.
 	# 		If the investigate level goes below zero it starts patrolling again.
 	# 		If the investigate level goes above the investigate threshold then start investigating again

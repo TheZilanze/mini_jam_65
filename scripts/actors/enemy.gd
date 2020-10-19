@@ -5,6 +5,9 @@ export(float, 0, 360) var fov : float = 140
 export(float) var investigate_level_threshold : float = 0.5
 export(float) var attack_level_threshold : float = 1.0
 
+onready var investigate_icon = $investigate_icon
+onready var attack_icon = $attack_icon
+
 var target
 var nav_mesh : Navigation2D = null
 
@@ -19,17 +22,26 @@ var line_of_sight_offsets : PoolVector2Array = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	# Find nav mesh
+	for nm in get_tree().get_nodes_in_group("nav_mesh"):
+		nav_mesh = nm
+		break
+	
 	# TEMP.? Find a player as a target (use the first player found)
 	for player in get_tree().get_nodes_in_group("player"):
 		target = player
+		target.connect("died", self, "on_target_died")
 		break
 	
+	investigate_icon.hide()
+	attack_icon.hide()
 	
 	pass # Replace with function body.
 
 
 func _draw():
 	
+	"""
 	# Range
 	draw_circle(Vector2.ZERO, visibility_range, Color(0, 0.5, 0.5, 0.5))
 	
@@ -41,6 +53,7 @@ func _draw():
 	# Targets last known position
 	if target_last_known_position:
 		draw_circle(to_local(target_last_known_position), 32, Color(0, 0, 1, 0.5))
+	"""
 	
 	pass
 
@@ -82,3 +95,5 @@ func seek(target_pos):
 	return (target_pos - global_position).normalized() * speed
 
 
+func on_target_died():
+	target = null

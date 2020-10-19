@@ -21,8 +21,7 @@ func _ready():
 
 
 func enter(params):
-	if path.empty():
-		path = find_path()
+	path = find_path()
 
 
 func exit():
@@ -52,16 +51,17 @@ func _physics_process(delta):
 	# Check if state should be changed
 	if owner.target_in_range() and owner.target_in_line_of_sight():
 		owner.investigate_level += delta
-		if owner.investigate_level >= owner.investigate_level_threshold:
+		if owner.target.is_alive and owner.investigate_level >= owner.investigate_level_threshold:
 			emit_signal("finished", "investigate", {})
 	else:
 		owner.investigate_level -= delta
 		owner.investigate_level = clamp(owner.investigate_level, 0, owner.investigate_level_threshold)
-	#print("investigate_level: " + str(owner.investigate_level))
 
 
 func find_path():
+	var new_path = []
 	if owner.nav_mesh:
-		return owner.nav_mesh.get_simple_path(owner.global_position, patrol_points[patrol_index].global_position, true)
-	else:
-		return [patrol_points[patrol_index].global_position]
+		new_path = owner.nav_mesh.get_simple_path(owner.global_position, patrol_points[patrol_index].global_position, true)
+	if new_path.empty():
+		new_path = [patrol_points[patrol_index].global_position]
+	return new_path

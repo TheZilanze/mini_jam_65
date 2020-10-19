@@ -1,6 +1,10 @@
 extends Control
 
 
+func _ready():
+	LEVEL_MANAGER.reset()
+
+
 func _on_btn_play_pressed():
 	get_tree().change_scene("res://scenes/gui/intro.tscn")
 

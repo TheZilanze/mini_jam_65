@@ -11,10 +11,14 @@ func _ready():
 
 func enter(params):
 	owner.target_last_known_position = owner.target.global_position
+	
+	owner.investigate_icon.show()
 
 
 func exit():
 	owner.target_last_known_position = null
+	
+	owner.investigate_icon.hide()
 
 
 func _physics_process(delta):
